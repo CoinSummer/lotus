@@ -328,10 +328,10 @@ var stateReplaySetCmd = &cli.Command{
 		}
 
 		fmt.Println("Replay receipt:")
-		fmt.Printf("Exit code: %d\n", res.Receipt.ExitCode)
-		fmt.Printf("Return: %x\n", res.Receipt.Return)
-		fmt.Printf("Gas Used: %s\n", res.Receipt.GasUsed)
-		if res.Receipt.ExitCode != 0 {
+		fmt.Printf("Exit code: %d\n", res.MessageReceipt.ExitCode)
+		fmt.Printf("Return: %x\n", res.MessageReceipt.Return)
+		fmt.Printf("Gas Used: %s\n", res.MessageReceipt.GasUsed)
+		if res.MessageReceipt.ExitCode != 0 {
 			fmt.Printf("Error message: %q\n", res.Error)
 		}
 

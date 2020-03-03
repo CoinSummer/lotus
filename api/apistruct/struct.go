@@ -107,8 +107,8 @@ type FullNodeStruct struct {
 		StateMinerElectionPeriodStart func(ctx context.Context, actor address.Address, tsk types.TipSetKey) (uint64, error)                `perm:"read"`
 		StateMinerSectorSize          func(context.Context, address.Address, types.TipSetKey) (uint64, error)                             `perm:"read"`
 		StateMinerFaults              func(context.Context, address.Address, types.TipSetKey) ([]uint64, error)                           `perm:"read"`
-		StateCall                     func(context.Context, *types.Message, types.TipSetKey) (*api.MethodCall, error)                     `perm:"read"`
-		StateReplay                   func(context.Context, types.TipSetKey, cid.Cid) (*api.ReplayResults, error)                         `perm:"read"`
+		StateCall                     func(context.Context, *types.Message, types.TipSetKey) (*api.SimulationResult, error)               `perm:"read"`
+		StateReplay                   func(context.Context, types.TipSetKey, cid.Cid) (*api.SimulationResult, error)                      `perm:"read"`
 		StateGetActor                 func(context.Context, address.Address, types.TipSetKey) (*types.Actor, error)                       `perm:"read"`
 		StateReadState                func(context.Context, *types.Actor, types.TipSetKey) (*api.ActorState, error)                       `perm:"read"`
 		StatePledgeCollateral         func(context.Context, types.TipSetKey) (types.BigInt, error)                                        `perm:"read"`
@@ -448,11 +448,11 @@ func (c *FullNodeStruct) StateMinerFaults(ctx context.Context, actor address.Add
 	return c.Internal.StateMinerFaults(ctx, actor, tsk)
 }
 
-func (c *FullNodeStruct) StateCall(ctx context.Context, msg *types.Message, tsk types.TipSetKey) (*api.MethodCall, error) {
+func (c *FullNodeStruct) StateCall(ctx context.Context, msg *types.Message, tsk types.TipSetKey) (*api.SimulationResult, error) {
 	return c.Internal.StateCall(ctx, msg, tsk)
 }
 
-func (c *FullNodeStruct) StateReplay(ctx context.Context, tsk types.TipSetKey, mc cid.Cid) (*api.ReplayResults, error) {
+func (c *FullNodeStruct) StateReplay(ctx context.Context, tsk types.TipSetKey, mc cid.Cid) (*api.SimulationResult, error) {
 	return c.Internal.StateReplay(ctx, tsk, mc)
 }
 
