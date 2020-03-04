@@ -174,9 +174,10 @@ func (a *StateAPI) StateReplay(ctx context.Context, tsk types.TipSetKey, mc cid.
 	}
 
 	return &api.SimulationResult{
-		Message:     	m,
-		MessageReceipt: &r.MessageReceipt,
-		Error:   		errstr,
+		Message:     		m,
+		MessageReceipt: 	&r.MessageReceipt,
+		InternalExecutions: r.InternalExecutions,
+		Error:   			errstr,
 	}, nil
 }
 

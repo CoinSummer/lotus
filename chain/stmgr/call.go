@@ -61,9 +61,10 @@ func (sm *StateManager) CallRaw(ctx context.Context, msg *types.Message, bstate 
 		log.Warnf("chain call failed: %s", ret.ActorErr)
 	}
 	return &api.SimulationResult{
-		Message: 		msg,
-		MessageReceipt: &ret.MessageReceipt,
-		Error:          errs,
+		Message: 			msg,
+		MessageReceipt: 	&ret.MessageReceipt,
+		InternalExecutions: ret.InternalExecutions,
+		Error:          	errs,
 	}, nil
 
 }
